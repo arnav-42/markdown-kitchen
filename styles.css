@@ -1,0 +1,421 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+:root {
+    --bg: #f6f1e9;
+    --panel: #ffffff;
+    --panel2: #f9f5ef;
+    --ink: #1a1a1a;
+    --muted: #5f5b55;
+    --border: rgba(26, 26, 26, 0.12);
+    --accent: #e16f3d;
+    --accent-2: #d2a94a;
+    --shadow: 0 18px 40px rgba(46, 35, 20, 0.16);
+    --tile: rgba(26, 26, 26, 0.04);
+    --wood: #ddb892;
+    --wood-dark: #caa179;
+}
+
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family:
+        "Space Grotesk", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background:
+        linear-gradient(90deg, var(--tile) 1px, transparent 1px) 0 0 / 42px 42px,
+        linear-gradient(0deg, var(--tile) 1px, transparent 1px) 0 0 / 42px 42px,
+        radial-gradient(
+            1200px 800px at 10% 0%,
+            rgba(225, 111, 61, 0.16),
+            transparent 60%
+        ),
+        radial-gradient(
+            900px 700px at 90% 10%,
+            rgba(210, 169, 74, 0.18),
+            transparent 62%
+        ),
+        linear-gradient(160deg, #f7f0e7, #f3ece2 40%, #f9f5ef);
+    color: var(--ink);
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.75);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+.topbar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 6px;
+    background:
+        linear-gradient(90deg, var(--wood-dark), var(--wood)),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.2) 0,
+            rgba(255, 255, 255, 0.2) 2px,
+            transparent 2px,
+            transparent 8px
+        );
+    box-shadow: 0 8px 12px rgba(46, 35, 20, 0.12);
+    z-index: -1;
+}
+
+.brand .title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+.brand .subtitle {
+    margin-top: 2px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--ink);
+    padding: 8px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition:
+        transform 160ms ease,
+        box-shadow 160ms ease,
+        border-color 160ms ease;
+}
+.btn:hover {
+    border-color: rgba(26, 26, 26, 0.2);
+    box-shadow: 0 10px 18px rgba(46, 35, 20, 0.12);
+    transform: translateY(-1px);
+}
+.btn:active {
+    transform: translateY(0);
+}
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent), #f19a5e);
+    border-color: rgba(225, 111, 61, 0.4);
+    color: #fff;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 18px;
+}
+@media (max-width: 980px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.panel {
+    border: 1px solid var(--border);
+    background: var(--panel);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    animation: rise 420ms ease both;
+}
+.panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.3), transparent 35%),
+        linear-gradient(280deg, rgba(225, 111, 61, 0.08), transparent 40%);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.panel:nth-of-type(1) {
+    animation-delay: 80ms;
+}
+.panel:nth-of-type(2) {
+    animation-delay: 160ms;
+}
+.panel.preview {
+    animation-delay: 220ms;
+}
+
+.panelhead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel2);
+    position: relative;
+}
+.panelhead::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.label {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+.row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.small {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+select {
+    background: #fff;
+    border: 1px solid var(--border);
+    color: var(--ink);
+    padding: 7px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.check {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+textarea {
+    width: 100%;
+    min-height: 420px;
+    border: 0;
+    outline: none;
+    resize: vertical;
+    padding: 12px 14px;
+    background: #fffdf8;
+    color: var(--ink);
+    font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.foot {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    background: var(--panel2);
+}
+
+.stats {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.preview {
+    margin: 0 18px 18px;
+}
+.previewbox {
+    padding: 14px;
+    background: #fffdf8;
+    min-height: 180px;
+}
+.previewbox :where(h1, h2, h3) {
+    margin: 0.6em 0 0.4em;
+}
+.previewbox :where(code, pre) {
+    background: rgba(26, 26, 26, 0.05);
+    border: 1px solid var(--border);
+}
+.previewbox pre {
+    padding: 10px;
+    overflow: auto;
+    border-radius: 12px;
+}
+.previewbox code {
+    padding: 2px 5px;
+    border-radius: 8px;
+}
+.previewbox blockquote {
+    border-left: 3px solid rgba(225, 111, 61, 0.45);
+    padding-left: 12px;
+    color: rgba(26, 26, 26, 0.85);
+}
+.previewbox .spoiler {
+    background: rgba(26, 26, 26, 0.08);
+    border: 1px dashed rgba(26, 26, 26, 0.25);
+    border-radius: 8px;
+    padding: 1px 6px;
+}
+
+.footer {
+    padding: 12px 18px 22px;
+    color: var(--muted);
+}
+.hint {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .panel {
+        animation: none;
+    }
+    .btn {
+        transition: none;
+    }
+}
+
+.kitchen-decor {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+.kitchen-decor .steam {
+    position: absolute;
+    width: 12px;
+    height: 60px;
+    border-radius: 999px;
+    border: 2px solid rgba(225, 111, 61, 0.22);
+    border-color: rgba(225, 111, 61, 0.18) transparent transparent transparent;
+    filter: blur(0.3px);
+    animation: steam 3.6s ease-in-out infinite;
+}
+.kitchen-decor .steam.s1 {
+    right: 14%;
+    top: 90px;
+}
+.kitchen-decor .steam.s2 {
+    right: 10%;
+    top: 120px;
+    animation-delay: 0.6s;
+}
+.kitchen-decor .steam.s3 {
+    right: 18%;
+    top: 140px;
+    animation-delay: 1.2s;
+}
+.kitchen-decor .plate {
+    position: absolute;
+    right: 8%;
+    top: 160px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 50% 50%,
+        #fffdf8 0,
+        #fffdf8 55%,
+        rgba(26, 26, 26, 0.06) 56%,
+        #f8f2ea 70%,
+        #efe4d7 100%
+    );
+    box-shadow: 0 12px 26px rgba(46, 35, 20, 0.18);
+    opacity: 0.8;
+}
+.kitchen-decor .utensil {
+    position: absolute;
+    width: 8px;
+    height: 140px;
+    background: linear-gradient(180deg, #e7e1d8 0, #c9c3bb 55%, #b7b1a8 100%);
+    border-radius: 6px;
+    box-shadow: 0 6px 14px rgba(46, 35, 20, 0.16);
+    opacity: 0.7;
+}
+.kitchen-decor .utensil.fork {
+    right: 2%;
+    top: 140px;
+    transform: rotate(12deg);
+}
+.kitchen-decor .utensil.fork::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    left: -6px;
+    width: 20px;
+    height: 22px;
+    border-radius: 8px 8px 4px 4px;
+    background: linear-gradient(180deg, #f0ebe3, #c9c3bb);
+    box-shadow: inset 0 0 0 2px rgba(26, 26, 26, 0.12);
+}
+.kitchen-decor .utensil.spoon {
+    right: 5.5%;
+    top: 120px;
+    transform: rotate(-6deg);
+}
+.kitchen-decor .utensil.spoon::before {
+    content: "";
+    position: absolute;
+    top: -22px;
+    left: -8px;
+    width: 24px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #f0ebe3, #c9c3bb);
+    box-shadow: inset 0 0 0 2px rgba(26, 26, 26, 0.1);
+}
+
+@keyframes steam {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.9);
+    }
+    40% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-18px) scale(1.1);
+    }
+}
+
+main,
+footer,
+.topbar,
+.panel {
+    position: relative;
+    z-index: 1;
+}

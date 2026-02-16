@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Markdown Kitchen</title>
+        <link rel="stylesheet" href="./styles.css" />
+        <script
+            src="https://cdn.jsdelivr.net/npm/markdown-it@14/dist/markdown-it.min.js"
+            defer
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/turndown@7/dist/turndown.js"
+            defer
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/turndown-plugin-gfm@1/dist/turndown-plugin-gfm.js"
+            defer
+        ></script>
+        <script src="./app.js" defer></script>
+    </head>
+    <body>
+        <div class="kitchen-decor" aria-hidden="true">
+            <span class="steam s1"></span>
+            <span class="steam s2"></span>
+            <span class="steam s3"></span>
+            <span class="plate"></span>
+            <span class="utensil fork"></span>
+            <span class="utensil spoon"></span>
+        </div>
+        <header class="topbar">
+            <div class="brand">
+                <div class="title">Markdown Kitchen</div>
+                <div class="subtitle">By Arnav Kalekar</div>
+            </div>
+            <div class="actions">
+                <button id="swapBtn" class="btn">Swap</button>
+                <button id="copyOutBtn" class="btn">Copy Output</button>
+                <button id="downloadBtn" class="btn">Download .md</button>
+            </div>
+        </header>
+
+        <main class="grid">
+            <section class="panel">
+                <div class="panelhead">
+                    <div class="label">Input</div>
+                    <div class="row">
+                        <label class="small">Flavor</label>
+                        <select id="inDialect"></select>
+                        <label class="small">Mode</label>
+                        <select id="mode">
+                            <option value="live" selected>Live</option>
+                            <option value="manual">Manual</option>
+                        </select>
+                        <button id="convertBtn" class="btn btn-primary">
+                            Convert
+                        </button>
+                    </div>
+                </div>
+                <textarea
+                    id="input"
+                    spellcheck="false"
+                    placeholder="Paste markdown here..."
+                ></textarea>
+                <div class="foot">
+                    <div id="inStats" class="stats"></div>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="panelhead">
+                    <div class="label">Output</div>
+                    <div class="row">
+                        <label class="small">Flavor</label>
+                        <select id="outDialect"></select>
+                        <label class="small">Options</label>
+                        <label class="check"
+                            ><input id="optWrap" type="checkbox" checked />
+                            Wrap</label
+                        >
+                        <label class="check"
+                            ><input id="optTight" type="checkbox" /> Tight
+                            lists</label
+                        >
+                        <label class="check"
+                            ><input id="optSetext" type="checkbox" /> Setext
+                            H1/H2</label
+                        >
+                    </div>
+                </div>
+                <textarea
+                    id="output"
+                    spellcheck="false"
+                    placeholder="Converted markdown appears here..."
+                    readonly
+                ></textarea>
+                <div class="foot">
+                    <div id="outStats" class="stats"></div>
+                </div>
+            </section>
+        </main>
+
+        <section class="panel preview">
+            <div class="panelhead">
+                <div class="label">Preview</div>
+                <div class="row">
+                    <span class="hint">
+                        Preview uses a Markdown renderer so flavor-specific
+                        syntax may be approximated.
+                    </span>
+                </div>
+            </div>
+            <div id="preview" class="previewbox"></div>
+        </section>
+
+        <footer class="footer">
+            <div class="hint">
+                Notes: Conversions are best-effort. Flavor-specific extensions
+                (Obsidian embeds/callouts, Kramdown attribute lists,
+                MultiMarkdown metadata, etc.) may be approximated or preserved
+                as raw text when there is no equivalent.
+            </div>
+        </footer>
+    </body>
+</html>
